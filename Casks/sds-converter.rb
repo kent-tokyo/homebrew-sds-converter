@@ -10,8 +10,8 @@ cask "sds-converter" do
   app "sds-converter.app"
 
   postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-d", "com.apple.quarantine", "#{appdir}/sds-converter.app"],
+    system_command "/bin/sh",
+                   args: ["-c", "xattr -d com.apple.quarantine '#{appdir}/sds-converter.app' 2>/dev/null || true"],
                    sudo: false
   end
 

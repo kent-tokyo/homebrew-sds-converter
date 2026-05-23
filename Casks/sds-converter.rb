@@ -9,6 +9,12 @@ cask "sds-converter" do
 
   app "sds-converter.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-d", "com.apple.quarantine", "#{appdir}/sds-converter.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Preferences/com.sds-converter.app.plist",
   ]
